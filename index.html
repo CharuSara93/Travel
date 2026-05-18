@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Sri Lanka | Discover Paradise</title>
+    <meta name="description" content="Discover the beauty of Sri Lanka - beaches, mountains, wildlife, culture, and ancient history. Plan your dream vacation to the Pearl of the Indian Ocean.">
+    <meta name="keywords" content="Sri Lanka, travel, tourism, beaches, wildlife, culture, Sigiriya, Ella, Galle">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading Sri Lanka...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>Travel Sri Lanka</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link" data-i18n="nav_home">Home</a>
+                <a href="#destinations" class="nav-link" data-i18n="nav_destinations">Destinations</a>
+                <a href="#map" class="nav-link" data-i18n="nav_map">Map</a>
+                <a href="#culture" class="nav-link" data-i18n="nav_culture">Culture</a>
+                <a href="#gallery" class="nav-link" data-i18n="nav_gallery">Gallery</a>
+                <a href="#planning" class="nav-link" data-i18n="nav_planning">Plan Trip</a>
+                <a href="#testimonials" class="nav-link" data-i18n="nav_reviews">Reviews</a>
+            </div>
+            <div class="nav-actions">
+                <button id="lang-toggle" class="nav-btn" title="Change Language">
+                    <i class="fas fa-globe"></i>
+                    <span id="current-lang">EN</span>
+                </button>
+                <button id="theme-toggle" class="nav-btn" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-btn mobile-only">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1588258525935-6b2c6d2d0b1e?w=1920');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1920');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1920');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1920');"></div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="hero-title" data-i18n="hero_title">Discover the Beauty of Sri Lanka</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">Explore beaches, mountains, wildlife, culture, and ancient history</p>
+            <div class="hero-cta">
+                <a href="#destinations" class="btn btn-primary" data-i18n="hero_cta">Explore Now</a>
+                <a href="#video-modal" class="btn btn-glass" id="play-video">
+                    <i class="fas fa-play"></i>
+                    <span data-i18n="watch_video">Watch Video</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label" data-i18n="stat_unesco">UNESCO Sites</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1,340</span>
+                    <span class="stat-label" data-i18n="stat_km">KM of Coastline</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">26</span>
+                    <span class="stat-label" data-i18n="stat_national">National Parks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2,500+</span>
+                    <span class="stat-label" data-i18n="stat_years">Years of History</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span data-i18n="scroll_down">Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- Search & Filter Bar -->
+    <section class="search-bar-section">
+        <div class="container">
+            <div class="search-bar glass" data-aos="fade-up">
+                <div class="search-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="destination-search" placeholder="Search destinations..." data-i18n-placeholder="search_placeholder">
+                </div>
+                <div class="filter-group">
+                    <select id="province-filter">
+                        <option value="all" data-i18n="all_provinces">All Provinces</option>
+                        <option value="central">Central Province</option>
+                        <option value="southern">Southern Province</option>
+                        <option value="uva">Uva Province</option>
+                        <option value="sabaragamuwa">Sabaragamuwa</option>
+                        <option value="western">Western Province</option>
+                        <option value="north-central">North Central</option>
+                        <option value="eastern">Eastern Province</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="category-filter">
+                        <option value="all" data-i18n="all_categories">All Categories</option>
+                        <option value="beach">Beaches</option>
+                        <option value="mountain">Mountains</option>
+                        <option value="wildlife">Wildlife</option>
+                        <option value="culture">Culture</option>
+                        <option value="history">History</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="search-btn">
+                    <i class="fas fa-search"></i>
+                    <span data-i18n="search">Search</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Destinations -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-i18n="featured_tag">Featured</span>
+                <h2 class="section-title" data-i18n="destinations_title">Popular Destinations</h2>
+                <p class="section-desc" data-i18n="destinations_desc">Explore the most breathtaking places across the island</p>
+            </div>
+            <div class="destinations-grid" id="destinations-grid">
+                <!-- Destination cards will be populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Travel Recommendation -->
+    <section class="ai-recommendation">
+        <div class="container">
+            <div class="ai-card glass" data-aos="zoom-in">
+                <div class="ai-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 data-i18n="ai_title">AI Travel Assistant</h3>
+                <p data-i18n="ai_desc">Tell us your preferences and get personalized recommendations</p>
+                <div class="ai-form">
+                    <div class="ai-input-group">
+                        <label data-i18n="ai_interests">What interests you?</label>
+                        <div class="ai-tags">
+                            <span class="ai-tag" data-value="beach"><i class="fas fa-umbrella-beach"></i> Beaches</span>
+                            <span class="ai-tag" data-value="mountain"><i class="fas fa-mountain"></i> Mountains</span>
+                            <span class="ai-tag" data-value="wildlife"><i class="fas fa-paw"></i> Wildlife</span>
+                            <span class="ai-tag" data-value="culture"><i class="fas fa-landmark"></i> Culture</span>
+                            <span class="ai-tag" data-value="adventure"><i class="fas fa-hiking"></i> Adventure</span>
+                            <span class="ai-tag" data-value="relax"><i class="fas fa-spa"></i> Relaxation</span>
+                        </div>
+                    </div>
+                    <div class="ai-input-group">
+                        <label data-i18n="ai_duration">Trip Duration</label>
+                        <input type="range" id="ai-duration" min="3" max="21" value="7">
+                        <span id="ai-duration-value">7 days</span>
+                    </div>
+                    <button class="btn btn-primary btn-full" id="ai-recommend-btn">
+                        <i class="fas fa-magic"></i>
+                        <span data-i18n="ai_get">Get Recommendations</span>
+                    </button>
+                </div>
+                <div class="ai-results" id="ai-results"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map -->
+    <section id="map" class="map-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-i18n="explore_tag">Explore</span>
+                <h2 class="section-title" data-i18n="map_title">Interactive Map</h2>
+                <p class="section-desc" data-i18n="map_desc">Click on markers to discover each destination</p>
+            </div>
+            <div class="map-container glass" data-aos="fade-up">
+                <div id="leaflet-map"></div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-dot beach"></span> Beaches</div>
+                    <div class="legend-item"><span class="legend-dot mountain"></span> Mountains</div>
+                    <div class="legend-item"><span class="legend-dot wildlife"></span> Wildlife</div>
+                    <div class="legend-item"><span class="legend-dot culture"></span> Culture</div>
+                    <div class="legend-item"><span class="legend-dot history"></span> History</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historical & Cultural Section -->
+    <section id="culture" class="culture">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-i18n="heritage_tag">Heritage</span>
+                <h2 class="section-title" data-i18n="culture_title">History & Culture</h2>
+                <p class="section-desc" data-i18n="culture_desc">Journey through 2,500 years of rich heritage</p>
+            </div>
+            <div class="timeline" id="timeline">
+                <!-- Timeline items populated by JS -->
+            </div>
+            <div class="culture-cards" id="culture-cards">
+                <!-- Culture cards populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-i18n="gallery_tag">Gallery</span>
+                <h2 class="section-title" data-i18n="gallery_title">Visual Journey</h2>
+                <p class="section-desc" data-i18n="gallery_desc">A glimpse into the paradise island</p>
+            </div>
+            <div class="gallery-filter">
+                <button class="gallery-filter-btn active" data-filter="all" data-i18n="all">All</button>
+                <button class="gallery-filter-btn" data-filter="landscape" data-i18n="landscapes">Landscapes</button>
+                <button class="gallery-filter-btn" data-filter="wildlife" data-i18n="wildlife">Wildlife</button>
+                <button class="gallery-filter-btn" data-filter="beach" data-i18n="beaches">Beaches</button>
+                <button class="gallery-filter-btn" data-filter="temple" data-i18n="temples">Temples</button>
+                <button class="gallery-filter-btn" data-filter="train" data-i18n="trains">Trains</button>
+            </div>
+            <div class="gallery-masonry" id="gallery-masonry">
+                <!-- Gallery items populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Travel Planning Section -->
+    <section id="planning" class="planning">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-i18n="plan_tag">Plan</span>
+                <h2 class="section-title" data-i18n="planning_title">Plan Your Trip</h2>
+                <p class="section-desc" data-i18n="planning_desc">Everything you need for the perfect vacation</p>
+            </div>
+            <div class="planning-grid">
+                <!-- Best Time to Visit -->
+                <div class="planning-card glass" data-aos="fade-up" data-aos-delay="0">
+                    <div class="planning-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3 data-i18n="best_time_title">Best Time to Visit</h3>
+                    <div class="weather-widget">
+                        <div class="weather-season active" data-season="dec-mar">
+                            <span class="season-name">Dec - Mar</span>
+                            <span class="season-desc">South & West Coasts</span>
+                            <span class="season-weather"><i class="fas fa-sun"></i> 27-30°C</span>
+                        </div>
+                        <div class="weather-season" data-season="apr-sep">
+                            <span class="season-name">Apr - Sep</span>
+                            <span class="season-desc">East Coast & North</span>
+                            <span class="season-weather"><i class="fas fa-sun"></i> 28-32°C</span>
+                        </div>
+                        <div class="weather-season" data-season="oct-nov">
+                            <span class="season-name">Oct - Nov</span>
+                            <span class="season-desc">Inter-monsoon</span>
+                            <span class="season-weather"><i class="fas fa-cloud-rain"></i> 25-28°C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Calculator -->
+                <div class="planning-card glass" data-aos="fade-up" data-aos-delay="100">
+                    <div class="planning-icon"><i class="fas fa-calculator"></i></div>
+                    <h3 data-i18n="budget_title">Budget Calculator</h3>
+                    <div class="budget-calculator">
+                        <div class="budget-row">
+                            <label data-i18n="budget_days">Days</label>
+                            <input type="number" id="budget-days" value="7" min="1" max="30">
+                        </div>
+                        <div class="budget-row">
+                            <label data-i18n="budget_travelers">Travelers</label>
+                            <input type="number" id="budget-travelers" value="2" min="1" max="10">
+                        </div>
+                        <div class="budget-row">
+                            <label data-i18n="budget_style">Style</label>
+                            <select id="budget-style">
+                                <option value="budget" data-i18n="style_budget">Budget ($40/day)</option>
+                                <option value="mid" data-i18n="style_mid">Mid-Range ($80/day)</option>
+                                <option value="luxury" data-i18n="style_luxury">Luxury ($200/day)</option>
+                            </select>
+                        </div>
+                        <div class="budget-total">
+                            <span data-i18n="estimated_cost">Estimated Cost</span>
+                            <span id="budget-total">$560</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currency Converter -->
+                <div class="planning-card glass" data-aos="fade-up" data-aos-delay="200">
+                    <div class="planning-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3 data-i18n="currency_title">Currency Converter</h3>
+                    <div class="currency-converter">
+                        <div class="currency-row">
+                            <input type="number" id="currency-from" value="100">
+                            <select id="currency-from-select">
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="AUD">AUD (A$)</option>
+                                <option value="INR">INR (₹)</option>
+                            </select>
+                        </div>
+                        <div class="currency-equals"><i class="fas fa-arrow-down"></i></div>
+                        <div class="currency-row">
+                            <input type="number" id="currency-to" value="30000" readonly>
+                            <select id="currency-to-select">
+                                <option value="LKR" selected>LKR (Rs)</option>
+                            </select>
+                        </div>
+                        <div class="currency-rate">
+                            <span id="currency-rate-text">1 USD = 300 LKR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel Packages -->
+                <div class="planning-card glass packages-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="planning-icon"><i class="fas fa-suitcase"></i></div>
+                    <h3 data-i18n="packages_title">Travel Packages</h3>
+                    <div class="packages-list" id="packages-list">
+                        <!-- Packages populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Transportation -->
+                <div class="planning-card glass" data-aos="fade-up" data-aos-delay="400">
+                    <div class="planning-icon"><i class="fas fa-bus"></i></div>
+                    <h3 data-i18n="transport_title">Getting Around</h3>
+                    <div class="transport-guide">
+                        <div class="transport-item">
+                            <i class="fas fa-train"></i>
+                            <div>
+                                <strong data-i18n="transport_train">Train</strong>
+                                <span data-i18n="transport_train_desc">Scenic routes, affordable</span>
+                            </div>
+                        </div>
+                        <div class="transport-item">
+                            <i class="fas fa-taxi"></i>
+                            <div>
+                                <strong data-i18n="transport_taxi">Tuk-Tuk/Taxi</strong>
+                                <span data-i18n="transport_taxi_desc">Local experience, negotiate</span>
+                            </div>
+                        </div>
+                        <div class="transport-item">
+                            <i class="fas fa-car"></i>
+                            <div>
+                                <strong data-i18n="transport_car">Private Car</strong>
+                                <span data-i18n="transport_car_desc">With driver, comfortable</span>
+                            </div>
+                        </div>
+                        <div class="transport-item">
+                            <i class="fas fa-bus"></i>
+                            <div>
+                                <strong data-i18n="transport_bus">Bus</strong>
+                                <span data-i18n="transport_bus_desc">Very cheap, crowded</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Widget -->
+                <div class="planning-card glass" data-aos="fade-up" data-aos-delay="500">
+                    <div class="planning-icon"><i class="fas fa-cloud-sun"></i></div>
+                    <h3 data-i18n="weather_title">Current Weather</h3>
+                    <div class="weather-current">
+                        <div class="weather-city">Colombo</div>
+                        <div class="weather-temp">31°C</div>
+                        <div class="weather-condition"><i class="fas fa-sun"></i> Sunny</div>
+                        <div class="weather-details">
+                            <span><i class="fas fa-tint"></i> 78% Humidity</span>
+                            <span><i class="fas fa-wind"></i> 18 km/h</span>
+                        </div>
+                    </div>
+                    <div class="weather-forecast">
+                        <div class="forecast-day">
+                            <span>Mon</span>
+                            <i class="fas fa-sun"></i>
+                            <span>32°</span>
+                        </div>
+                        <div class="forecast-day">
+                            <span>Tue</span>
+                            <i class="fas fa-cloud-sun"></i>
+                            <span>30°</span>
+                        </div>
+                        <div class="forecast-day">
+                            <span>Wed</span>
+                            <i class="fas fa-cloud-rain"></i>
+                            <span>28°</span>
+                        </div>
+                        <div class="forecast-day">
+                            <span>Thu</span>
+                            <i class="fas fa-sun"></i>
+                            <span>31°</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-i18n="reviews_tag">Reviews</span>
+                <h2 class="section-title" data-i18n="testimonials_title">What Travelers Say</h2>
+                <p class="section-desc" data-i18n="testimonials_desc">Real experiences from around the world</p>
+            </div>
+            <div class="swiper testimonials-swiper" data-aos="fade-up">
+                <div class="swiper-wrapper" id="testimonials-wrapper">
+                    <!-- Testimonials populated by JS -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#" class="footer-logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>Travel Sri Lanka</span>
+                        </a>
+                        <p data-i18n="footer_desc">Your gateway to the Pearl of the Indian Ocean. Discover ancient temples, pristine beaches, lush tea plantations, and incredible wildlife.</p>
+                        <div class="footer-social">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4 data-i18n="footer_quick">Quick Links</h4>
+                        <ul>
+                            <li><a href="#destinations" data-i18n="nav_destinations">Destinations</a></li>
+                            <li><a href="#culture" data-i18n="nav_culture">Culture</a></li>
+                            <li><a href="#gallery" data-i18n="nav_gallery">Gallery</a></li>
+                            <li><a href="#planning" data-i18n="nav_planning">Plan Trip</a></li>
+                            <li><a href="#" data-i18n="footer_visa">Visa Info</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4 data-i18n="footer_support">Support</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer_faq">FAQ</a></li>
+                            <li><a href="#" data-i18n="footer_contact">Contact Us</a></li>
+                            <li><a href="#" data-i18n="footer_privacy">Privacy Policy</a></li>
+                            <li><a href="#" data-i18n="footer_terms">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4 data-i18n="footer_contact">Contact Us</h4>
+                        <form class="contact-form" id="contact-form">
+                            <input type="text" placeholder="Your Name" required data-i18n-placeholder="form_name">
+                            <input type="email" placeholder="Your Email" required data-i18n-placeholder="form_email">
+                            <textarea placeholder="Your Message" rows="3" required data-i18n-placeholder="form_message"></textarea>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-paper-plane"></i>
+                                <span data-i18n="form_send">Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <div class="newsletter-content">
+                        <h4 data-i18n="newsletter_title">Subscribe to Our Newsletter</h4>
+                        <p data-i18n="newsletter_desc">Get the latest travel tips and exclusive deals</p>
+                    </div>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required data-i18n-placeholder="newsletter_placeholder">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-i18n="subscribe">Subscribe</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p data-i18n="copyright">&copy; 2024 Travel Sri Lanka. All rights reserved.</p>
+                <p data-i18n="made_with">Made with <i class="fas fa-heart"></i> for Sri Lanka</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Floating Chatbot -->
+    <div class="chatbot-container">
+        <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open chat">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chatbot-info">
+                    <h4>Sri Lanka Guide</h4>
+                    <span>Online</span>
+                </div>
+                <button id="chatbot-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="chat-message bot">
+                    <div class="message-content">
+                        <p>Hello! I'm your Sri Lanka travel assistant. How can I help you plan your trip?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Ask me anything...">
+                <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Destination Modal -->
+    <div id="destination-modal" class="modal">
+        <div class="modal-content glass">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content video-modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="video-wrapper">
+                <iframe id="video-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
